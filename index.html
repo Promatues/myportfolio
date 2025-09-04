@@ -996,6 +996,58 @@
             });
         }
 
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showCopyNotification('Copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showCopyNotification('Copied to clipboard!');
+            });
+        }
+
+        // Show copy notification
+        function showCopyNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: #000000;
+                padding: 12px 24px;
+                border-radius: 4px;
+                font-family: 'Courier Prime', monospace;
+                font-size: 14px;
+                z-index: 10000;
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: all 0.3s ease;
+            `;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateY(0)';
+            }, 100);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
         // Render contact methods
         function renderContactMethods() {
             const container = document.getElementById('contact-methods');
@@ -1005,9 +1057,7 @@
                 const methodDiv = document.createElement('div');
                 methodDiv.className = 'flex items-center space-x-3 md:space-x-4 p-3 bg-gray-800 hover:bg-gray-700 transition-colors cursor-pointer rounded';
                 methodDiv.onclick = () => {
-                    if (method.command.startsWith('http') || method.command.startsWith('mailto') || method.command.startsWith('tel')) {
-                        window.open(method.command, '_blank');
-                    }
+                    copyToClipboard(method.value);
                 };
                 methodDiv.innerHTML = `
                     <div class="text-xl md:text-2xl">${method.icon}</div>

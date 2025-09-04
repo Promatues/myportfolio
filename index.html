@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glenn.exe - Video Editor Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom Pixel Dark Theme Styles */
+        :root {
+            --primary-green: #10b981;
+            --dark-bg: #111827;
+            --black-bg: #000000;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --red-accent: #ef4444;
+            --yellow-accent: #f59e0b;
+            --blue-accent: #3b82f6;
+        }
+
+        body {
+            font-family: 'Courier Prime', 'Courier New', monospace;
+            background-color: var(--gray-900);
+            color: var(--primary-green);
+            image-rendering: pixelated;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 16px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+            border: 2px solid #374151;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border: 2px solid #000000;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #059669;
+        }
+
+        ::selection {
+            background: #10b981;
+            color: #000000;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Terminal window styles */
+        .terminal-window {
+            background-color: var(--gray-900);
+            border: 2px solid var(--primary-green);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: var(--red-accent); }
+        .dot-yellow { background-color: var(--yellow-accent); }
+        .dot-green { background-color: #22c55e; }
+
+        /* Button styles */
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: var(--black-bg);
+            border: 2px solid var(--primary-green);
+            padding: 12px 32px;
+            font-family: 'Courier Prime', monospace;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-green);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            padding: 12px 32px;
+            font-family: 'Courier Prime', monospace;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-green);
+            color: var(--black-bg);
+        }
+
+        /* Project cards */
+        .project-card {
+            background-color: var(--black-bg);
+            border: 2px solid var(--gray-700);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-green);
+        }
+
+        /* Project image handling */
+        .project-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Star ratings */
+        .star-rating {
+            color: #fbbf24;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        @media (min-width: 768px) {
+            .star-rating {
+                font-size: 16px;
+            }
+        }
+
+        /* Form styles */
+        .form-input {
+            width: 100%;
+            background-color: var(--gray-800);
+            border: 1px solid var(--gray-600);
+            color: var(--primary-green);
+            padding: 10px 12px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-green);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .form-input {
+                padding: 12px 16px;
+                font-size: 16px;
+            }
+        }
+
+        /* Navigation styles */
+        .nav-item {
+            padding: 8px 12px;
+            border: 2px solid var(--gray-600);
+            color: var(--primary-green);
+            background-color: transparent;
+            transition: all 0.2s;
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            border-color: var(--primary-green);
+            background-color: var(--primary-green);
+            color: var(--black-bg);
+        }
+
+        /* ASCII Art responsive sizing */
+        .ascii-art {
+            font-family: 'Courier Prime', monospace;
+            line-height: 1;
+            overflow-x: hidden;
+            color: #6ee7b7;
+            white-space: pre;
+            text-align: center;
+        }
+
+
+        /* Responsive text sizes */
+        @media (max-width: 360px) {
+            .ascii-art { font-size: 4px; }
+        }
+        @media (min-width: 361px) and (max-width: 480px) {
+            .ascii-art { font-size: 5px; }
+        }
+        @media (min-width: 481px) and (max-width: 640px) {
+            .ascii-art { font-size: 7px; }
+        }
+        @media (min-width: 641px) and (max-width: 768px) {
+            .ascii-art { font-size: 9px; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .ascii-art { font-size: 11px; }
+        }
+        @media (min-width: 1025px) and (max-width: 1280px) {
+            .ascii-art { font-size: 13px; }
+        }
+        @media (min-width: 1281px) and (max-width: 1536px) {
+            .ascii-art { font-size: 15px; }
+        }
+        @media (min-width: 1537px) {
+            .ascii-art { font-size: 17px; }
+        }
+
+        /* Additional responsive utilities */
+        @media (max-width: 640px) {
+            .container { padding: 0 16px; }
+            .terminal-window { margin-bottom: 1rem; }
+            .btn { font-size: 14px; padding: 10px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 12px; }
+            .terminal-window { padding: 1rem; }
+            .ascii-art { font-size: 5px; }
+            .hero-title { font-size: 2rem; }
+            .hero-subtitle { font-size: 1rem; }
+        }
+
+        /* Ensure proper touch targets on mobile */
+        @media (max-width: 768px) {
+            .nav-item, .btn, .project-card {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+
+        /* Improve readability on small screens */
+        @media (max-width: 640px) {
+            body { font-size: 14px; }
+            h1, h2, h3 { line-height: 1.2; }
+            p { line-height: 1.5; }
+        }
+
+        /* Mobile navigation */
+        .mobile-menu {
+            display: none;
+        }
+
+        /* Mobile menu button animation */
+        #mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        #mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+        }
+
+        /* Typewriter effect */
+        .typewriter {
+            border-right: 2px solid var(--primary-green);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-right-color: var(--primary-green); }
+            51%, 100% { border-right-color: transparent; }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-900 text-green-400">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black border-b-2 border-green-400">
+        <div class="container mx-auto px-4 py-3 md:py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 md:space-x-3">
+                    <div class="w-6 h-6 md:w-8 md:h-8 border-2 border-white overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/fb/64/b1/fb64b103079c88e921cc774cb45d1c9c.jpg" alt="G Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-green-400 font-bold text-base md:text-lg tracking-wider">GLENNIEL_GUTANG.EXE</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-4 lg:space-x-6">
+                    <button class="nav-item active" data-section="home">HOME</button>
+                    <button class="nav-item" data-section="projects">PROJECTS</button>
+                    <button class="nav-item" data-section="about">ABOUT_ME</button>
+                </nav>
+
+                <!-- Desktop Contact Button -->
+                <button class="hidden md:block px-3 py-2 lg:px-4 bg-red-500 border-2 border-white text-white hover:bg-red-600 transition-colors text-sm lg:text-base" data-section="contact">
+                    CONTACT
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-green-400 p-2" id="mobile-menu-btn">
+                    <span class="block w-5 h-0.5 bg-green-400 mb-1 transition-all"></span>
+                    <span class="block w-5 h-0.5 bg-green-400 mb-1 transition-all"></span>
+                    <span class="block w-5 h-0.5 bg-green-400 transition-all"></span>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-nav" class="hidden mt-3 border-t border-green-400 pt-3 md:hidden">
+                <div class="flex flex-col space-y-2">
+                    <button class="nav-item text-left w-full" data-section="home">HOME</button>
+                    <button class="nav-item text-left w-full" data-section="projects">PROJECTS</button>
+                    <button class="nav-item text-left w-full" data-section="about">ABOUT_ME</button>
+                    <button class="nav-item text-left w-full py-2 px-3 bg-red-500 border-2 border-white text-white hover:bg-red-600 transition-colors text-center" data-section="contact">CONTACT</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen bg-black flex items-center justify-center relative overflow-hidden py-20 md:py-0">
+            <!-- Background image -->
+            <div class="absolute inset-0 opacity-20 bg-cover bg-center bg-no-repeat" style="background-image: url('https://i.pinimg.com/1200x/6b/ea/12/6bea12ee9c7b069e8bdcf74726fdd299.jpg');"></div>
+
+            <!-- Animated background elements -->
+            <div class="absolute top-5 left-5 md:top-10 md:left-10 w-2 h-2 md:w-4 md:h-4 bg-green-400 animate-pulse"></div>
+            <div class="absolute top-10 right-10 md:top-20 md:right-20 w-3 h-3 md:w-6 md:h-6 bg-red-500 animate-pulse" style="animation-delay: 0.3s;"></div>
+            <div class="absolute bottom-10 left-10 md:bottom-20 md:left-20 w-2.5 h-2.5 md:w-5 md:h-5 bg-blue-400 animate-pulse" style="animation-delay: 0.7s;"></div>
+            <div class="absolute bottom-5 right-5 md:bottom-10 md:right-10 w-1.5 h-1.5 md:w-3 md:h-3 bg-yellow-400 animate-pulse" style="animation-delay: 1s;"></div>
+
+            <div class="text-center z-10 px-4 md:px-8 w-full">
+                <!-- ASCII Art Style Name -->
+                <div class="mb-2 md:mb-4">
+                    <pre class="ascii-art text-green-300 leading-tight mx-auto">    ░██████╗░██╗░░░░░███████╗███╗░░██╗███╗░░██╗
+    ██╔════╝░██║░░░░░██╔════╝████╗░██║████╗░██║
+    ██║░░██╗░██║░░░░░█████╗░░██╔██╗██║██╔██╗██║
+    ██║░░╚██╗██║░░░░░██╔══╝░░██║╚████║██║╚████║
+    ╚██████╔╝███████╗███████╗██║░╚███║██║░╚███║
+    ░╚═════╝░╚══════╝╚══════╝╚═╝░░╚══╝╚═╝░░╚══╝</pre>
+                </div>
+
+                <!-- Typewriter effect subtitle -->
+                <div class="mb-8 md:mb-12">
+                    <h2 class="text-green-400 text-lg md:text-xl lg:text-2xl font-mono tracking-wider">
+                        <span id="typewriter-text"></span>
+                        <span class="typewriter">|</span>
+                    </h2>
+                </div>
+
+                <!-- Description with terminal style -->
+                <div class="bg-gray-900 border-2 border-green-400 p-4 md:p-6 mb-6 md:mb-8 text-left max-w-2xl mx-auto">
+                    <div class="terminal-header mb-3 md:mb-4">
+                        <div class="terminal-dots">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                        </div>
+                        <span class="ml-2 md:ml-4 text-green-400 text-xs md:text-sm">~/glenn/portfolio</span>
+                    </div>
+                    <div class="text-green-400 font-mono text-xs md:text-sm">
+                        <p class="mb-2">$ cat about.txt</p>
+                        <p class="text-gray-300 leading-relaxed">
+                            Bringing stories to life through video editing, transitions, and
+                            compelling visual captions that captivate audiences worldwide.
+                        </p>
+                        <p class="mt-3 md:mt-4 mb-2">$ ls skills/</p>
+                        <p class="text-gray-300 text-xs md:text-sm">kdenlive.exe | transcriber.dll | aseprite.exe</p>
+                        <p class="text-gray-300 text-xs md:text-sm">capcut_pro.exe | pixel_game.dll | web_dev.dll</p>
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
+                    <button class="btn-primary text-sm md:text-base px-6 md:px-8 py-3 md:py-4" data-section="projects">
+                        <span class="flex items-center justify-center">
+                            ▶ VIEW_MY_WORK.exe
+                        </span>
+                    </button>
+                    <button class="btn-secondary text-sm md:text-base px-6 md:px-8 py-3 md:py-4" data-section="contact">
+                        CONTACT.exe
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="min-h-screen bg-gray-900 py-16 md:py-20">
+            <div class="container mx-auto px-4">
+                <!-- Section Header -->
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-mono font-bold text-green-400 mb-4">
+                        < PROJECTS.DIR />
+                    </h2>
+                    <div class="w-24 md:w-32 h-1 bg-green-400 mx-auto mb-4 md:mb-6"></div>
+                    <p class="text-gray-300 font-mono text-sm md:text-base max-w-2xl mx-auto px-4">
+                        A collection of video, website, and game projects, showcasing various styles and techniques.
+                        Click on any project to expand details.
+                    </p>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto" id="projects-grid">
+                    <!-- Projects will be populated by JavaScript -->
+                </div>
+
+                <!-- View More Button -->
+                <div class="text-center mt-8 md:mt-12">
+                    <button class="btn-secondary text-sm md:text-base px-6 md:px-8 py-3 md:py-4">
+                        LOAD_MORE_PROJECTS.exe
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="min-h-screen bg-black py-16 md:py-20">
+            <div class="container mx-auto px-4">
+                <!-- Section Header -->
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-mono font-bold text-green-400 mb-4">
+                        < ABOUT_ME.EXE />
+                    </h2>
+                    <div class="w-24 md:w-32 h-1 bg-green-400 mx-auto mb-4 md:mb-6"></div>
+                </div>
+
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-16">
+                        <!-- Profile Section -->
+                        <div class="order-2 lg:order-1">
+                            <div class="terminal-window p-4 md:p-6 mb-6 md:mb-8">
+                                <div class="terminal-header mb-3 md:mb-4">
+                                    <div class="terminal-dots">
+                                        <div class="terminal-dot dot-red"></div>
+                                        <div class="terminal-dot dot-yellow"></div>
+                                        <div class="terminal-dot dot-green"></div>
+                                    </div>
+                                    <span class="ml-2 md:ml-4 text-green-400 text-xs md:text-sm font-mono">~/user/glenn/bio.txt</span>
+                                </div>
+
+                                <div class="text-green-400 font-mono text-xs md:text-sm space-y-2">
+                                    <p>> Initializing bio.exe...</p>
+                                    <p>> Loading user data...</p>
+                                    <p>> Status: [ONLINE]</p>
+                                    <div class="mt-3 md:mt-4 text-gray-300 leading-relaxed">
+                                        <p class="mb-3 md:mb-4">
+                                            Hello! I'm Glenn, a passionate video editor with over 8 years of experience
+                                            in the digital media industry. I specialize in creating compelling visual
+                                            narratives that engage and inspire audiences.
+                                        </p>
+                                        <p class="mb-3 md:mb-4">
+                                            My journey began in 2016 when I discovered the power of storytelling through
+                                            video. Since then, I've worked with diverse clients ranging from indie
+                                            creators to major brands, always pushing the boundaries of visual creativity.
+                                        </p>
+                                        <p>
+                                            When I'm not editing, you'll find me exploring new techniques, gaming,
+                                            or contributing to open-source video editing tools.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stats Grid -->
+                            <div class="grid grid-cols-2 gap-3 md:gap-4" id="stats-grid">
+                                <!-- Stats will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Avatar and Skills -->
+                        <div class="order-1 lg:order-2">
+                            <!-- Pixel Avatar -->
+                            <div class="flex justify-center mb-6 md:mb-8">
+                                <div class="relative">
+                                    <div class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-gray-800 border-4 border-green-400 flex items-center justify-center">
+                                        <img
+                                            src="https://i.pinimg.com/736x/9d/4a/49/9d4a49b2b2b9392d3f844c4dbcff52d6.jpg"
+                                            alt="Glenn Profile"
+                                            class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover filter grayscale"
+                                        />
+                                    </div>
+                                    <div class="absolute -top-1 -right-1 md:-top-2 md:-right-2 w-4 h-4 md:w-6 md:h-6 bg-green-400 animate-pulse"></div>
+                                    <div class="absolute -bottom-1 -left-1 md:-bottom-2 md:-left-2 w-3 h-3 md:w-4 md:h-4 bg-red-500"></div>
+                                </div>
+                            </div>
+
+                            <!-- Client Reviews Display -->
+                            <div class="bg-gray-900 border-2 border-gray-700 p-4 md:p-6">
+                                <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-3 md:mb-4">CLIENT_REVIEWS.DAT</h3>
+                                <div class="space-y-3 md:space-y-4" id="reviews-container">
+                                    <!-- Reviews will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="terminal-window p-4 md:p-6">
+                        <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-4 md:mb-6 text-center">CAREER_TIMELINE.LOG</h3>
+                        <div class="space-y-3 md:space-y-4" id="timeline-container">
+                            <!-- Timeline will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="min-h-screen bg-gray-900 py-16 md:py-20">
+            <div class="container mx-auto px-4">
+                <!-- Section Header -->
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-mono font-bold text-green-400 mb-4">
+                        < CONTACT.SYS />
+                    </h2>
+                    <div class="w-24 md:w-32 h-1 bg-green-400 mx-auto mb-4 md:mb-6"></div>
+                    <p class="text-gray-300 font-mono text-sm md:text-base max-w-2xl mx-auto px-4">
+                        Ready to bring your vision to life? Send me a message and let's create something amazing together.
+                    </p>
+                </div>
+
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                        <!-- Contact Form -->
+                        <div class="bg-black border-2 border-green-400 p-4 md:p-6">
+                            <div class="terminal-header mb-4 md:mb-6">
+                                <div class="terminal-dots">
+                                    <div class="terminal-dot dot-red"></div>
+                                    <div class="terminal-dot dot-yellow"></div>
+                                    <div class="terminal-dot dot-green"></div>
+                                </div>
+                                <span class="ml-2 md:ml-4 text-green-400 text-xs md:text-sm font-mono">~/contact/new_project.exe</span>
+                            </div>
+
+                            <form id="contact-form" class="space-y-3 md:space-y-4">
+                                <div>
+                                    <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">CLIENT_NAME:</label>
+                                    <input type="text" name="name" required class="form-input text-sm md:text-base" placeholder="Enter your name...">
+                                </div>
+
+                                <div>
+                                    <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">EMAIL_ADDRESS:</label>
+                                    <input type="email" name="email" required class="form-input text-sm md:text-base" placeholder="your.email@domain.com">
+                                </div>
+
+                                <div>
+                                    <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">PROJECT_TYPE:</label>
+                                    <select name="project" class="form-input text-sm md:text-base">
+                                        <option value="commercial">COMMERCIAL</option>
+                                        <option value="music_video">MUSIC_VIDEO</option>
+                                        <option value="youtube">YOUTUBE_CONTENT</option>
+                                        <option value="corporate">CORPORATE_VIDEO</option>
+                                        <option value="wedding">WEDDING/EVENT</option>
+                                        <option value="other">OTHER</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">BUDGET_RANGE:</label>
+                                    <input type="text" name="budget" class="form-input text-sm md:text-base" placeholder="$1,000 - $5,000">
+                                </div>
+
+                                <div>
+                                    <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">PROJECT_DETAILS:</label>
+                                    <textarea name="message" required rows="4" class="form-input resize-none text-sm md:text-base" placeholder="Describe your project, timeline, and vision..."></textarea>
+                                </div>
+
+                                <button type="submit" class="btn-primary w-full text-sm md:text-base py-3 md:py-4">
+                                    SEND_MESSAGE.exe
+                                </button>
+                            </form>
+
+                            <div id="form-success" class="hidden mt-3 md:mt-4 p-3 bg-green-400 text-black font-mono text-xs md:text-sm">
+                                ✓ Message sent successfully! I'll get back to you within 24 hours.
+                            </div>
+                        </div>
+
+                        <!-- Contact Info & Social -->
+                        <div class="space-y-4 md:space-y-6">
+                            <!-- Direct Contact Methods -->
+                            <div class="bg-black border-2 border-gray-700 p-4 md:p-6">
+                                <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-3 md:mb-4">DIRECT_CONTACT.cfg</h3>
+                                <div class="space-y-3 md:space-y-4" id="contact-methods">
+                                    <!-- Contact methods will be populated by JavaScript -->
+                                </div>
+                            </div>
+
+                            <!-- Availability Status -->
+                            <div class="bg-black border-2 border-gray-700 p-4 md:p-6">
+                                <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-3 md:mb-4">STATUS.log</h3>
+                                <div class="space-y-2 md:space-y-3">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
+                                        <div class="w-2 h-2 md:w-3 md:h-3 bg-green-400 rounded-full animate-pulse"></div>
+                                        <span class="text-green-400 font-mono text-xs md:text-sm">AVAILABLE_FOR_NEW_PROJECTS</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 md:space-x-3">
+                                        <div class="w-2 h-2 md:w-3 md:h-3 bg-yellow-400"></div>
+                                        <span class="text-gray-300 font-mono text-xs md:text-sm">RESPONSE_TIME: < 24_HOURS</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 md:space-x-3">
+                                        <div class="w-2 h-2 md:w-3 md:h-3 bg-blue-400"></div>
+                                        <span class="text-gray-300 font-mono text-xs md:text-sm">TIMEZONE: UTC-5 (EST)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Terminal -->
+                            <div class="bg-black border-2 border-gray-700 p-4 md:p-6">
+                                <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-3 md:mb-4">FAQ.exe</h3>
+                                <div class="space-y-2 md:space-y-3 text-xs md:text-sm font-mono">
+                                    <div>
+                                        <div class="text-green-400">> How long does a typical project take?</div>
+                                        <div class="text-gray-300 ml-2">Most projects: 1-3 weeks depending on complexity</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-green-400">> What's your minimum project budget?</div>
+                                        <div class="text-gray-300 ml-2">Starting at $500 for simple edits</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-green-400">> Do you offer rush jobs?</div>
+                                        <div class="text-gray-300 ml-2">Yes, with 50% rush fee for <48hr delivery</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-green-400">> File formats you work with?</div>
+                                        <div class="text-gray-300 ml-2">All major formats: MP4, MOV, AVI, ProRes, etc.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Portfolio data
+        const portfolioData = {
+            projects: [
+                {
+                    id: 1,
+                    title: 'CYBERPUNK_TRAILER.mp4',
+                    category: 'COMMERCIAL',
+                    description: 'High-energy trailer featuring neon aesthetics and futuristic transitions',
+                    tech: ['Captions', 'Capcut Pro', 'Transitions'],
+                    stats: { views: '2.5M', duration: '01:32', fps: '60' },
+                    status: 'COMPLETED',
+                    image: 'https://i.pinimg.com/736x/fc/1e/c7/fc1ec716ef33d78670b65a4280abcc40.jpg'
+                },
+                {
+                    id: 2,
+                    title: 'MUSIC_VID_SYNTHWAVE.mp4',
+                    category: 'MUSIC_VIDEO',
+                    description: 'Retro synthwave music video with VHS effects and chromatic aberration',
+                    tech: ['Kdenlive', 'Motion Graphics', 'VFX'],
+                    stats: { views: '890K', duration: '03:45', fps: '24' },
+                    status: 'COMPLETED',
+                    image: 'https://i.pinimg.com/1200x/d5/ad/63/d5ad631bca1c9b130b244ab95a4e268c.jpg'
+                },
+                {
+                    id: 3,
+                    title: 'GAME_REVIEW_SERIES.mp4',
+                    category: 'YOUTUBE',
+                    description: 'Weekly gaming content with custom animations and dynamic cuts',
+                    tech: ['Capcut Pro', 'Captions', 'Sound Design'],
+                    stats: { views: '1.2M', duration: '12:34', fps: '30' },
+                    status: 'ONGOING',
+                    image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=600&fit=crop&auto=format'
+                },
+                {
+                    id: 4,
+                    title: 'BRAND_CAMPAIGN.mp4',
+                    category: 'ADVERTISING',
+                    description: 'Corporate video campaign with clean aesthetics and smooth transitions',
+                    tech: ['Premiere Pro', 'Illustrator', 'Photoshop'],
+                    stats: { views: '3.1M', duration: '00:45', fps: '24' },
+                    status: 'COMPLETED',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&auto=format'
+                }
+            ],
+            reviews: [
+                {
+                    client: '***',
+                    rating: 5,
+                    satisfaction: 98
+                },
+                {
+                    client: '***',
+                    rating: 5,
+                    satisfaction: 100
+                },
+                {
+                    client: '***',
+                    rating: 5,
+                    satisfaction: 97
+                },
+                {
+                    client: '***',
+                    rating: 4,
+                    satisfaction: 95
+                }
+            ],
+            stats: [
+                { label: 'TOTAL_CLIENTS', value: '150+' },
+                { label: 'AVERAGE_RATING', value: '4.9/5' },
+                { label: 'SATISFACTION_RATE', value: '98%' },
+                { label: 'REPEAT_CLIENTS', value: '65%' }
+            ],
+            stats: [
+                { label: 'TOTAL_CLIENTS', value: '150+' },
+                { label: 'AVERAGE_RATING', value: '4.9/5' },
+                { label: 'SATISFACTION_RATE', value: '98%' },
+                { label: 'REPEAT_CLIENTS', value: '65%' }
+            ],
+            timeline: [
+                { year: '2024', event: 'Founded independent video production studio', status: 'CURRENT' },
+                { year: '2022', event: 'Senior Video Editor at Digital Media Co.', status: 'COMPLETE' },
+                { year: '2020', event: 'Freelance Video Editor & Motion Designer', status: 'COMPLETE' },
+                { year: '2018', event: 'Junior Editor at Creative Agency', status: 'COMPLETE' },
+                { year: '2016', event: 'Started video editing journey', status: 'COMPLETE' }
+            ],
+            contactMethods: [
+                {
+                    icon: '📧',
+                    label: 'EMAIL',
+                    value: 'glennielgutang1@gmail.com',
+                    command: 'mailto:glennielgutang1@gmail.com'
+                },
+                {
+                    icon: '📱',
+                    label: 'PHONE',
+                    value: '+63 961-501-2459',
+                    command: 'tel:+639615012459'
+                },
+                {
+                    icon: '💬',
+                    label: 'DISCORD',
+                    value: 'editxpress',
+                    command: '#'
+                },
+                {
+                    icon: '🐦',
+                    label: 'TWITTER',
+                    value: '@ak_morith',
+                    command: 'https://x.com/ak_morith'
+                }
+            ]
+        };
+
+        // State management
+        let selectedProject = null;
+        let activeSkill = 0;
+        let currentSection = 'home';
+
+        // Initialize the portfolio
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTypewriter();
+            renderProjects();
+            renderStats();
+            renderReviews();
+            renderTimeline();
+            renderContactMethods();
+            setupNavigation();
+            setupMobileMenu();
+            setupScrollHandling();
+            setupContactForm();
+            startReviewRotation();
+        });
+
+        // Pixel grid removed - using background image instead
+
+        // Typewriter effect
+        function initializeTypewriter() {
+            const text = 'VIDEO EDITOR & WEB/GAME DEVELOPER';
+            const element = document.getElementById('typewriter-text');
+            let index = 0;
+
+            function type() {
+                if (index < text.length) {
+                    element.textContent = text.slice(0, index + 1);
+                    index++;
+                    setTimeout(type, 50);
+                }
+            }
+
+            type();
+        }
+
+        // Render projects
+        function renderProjects() {
+            const grid = document.getElementById('projects-grid');
+            grid.innerHTML = '';
+
+            portfolioData.projects.forEach((project, index) => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.onclick = () => toggleProject(project.id);
+                
+                projectCard.innerHTML = `
+                    <div class="p-3 md:p-4 border-b border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2 md:space-x-3">
+                                <div class="w-2 h-2 md:w-3 md:h-3 bg-green-400"></div>
+                                <span class="text-green-400 font-mono font-bold text-sm md:text-base">
+                                    PROJECT_${String(index + 1).padStart(2, '0')}
+                                </span>
+                            </div>
+                            <span class="px-1.5 py-0.5 md:px-2 md:py-1 text-xs font-mono border ${
+                                project.status === 'COMPLETED'
+                                    ? 'border-green-400 text-green-400'
+                                    : 'border-yellow-400 text-yellow-400'
+                            }">
+                                ${project.status}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="relative aspect-video bg-gray-800 overflow-hidden">
+                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden absolute inset-0 bg-gray-800 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-green-400 font-mono text-2xl md:text-4xl mb-2">🎬</div>
+                                <div class="text-gray-400 font-mono text-xs md:text-sm">${project.title}</div>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                            <div class="text-green-400 font-mono text-4xl md:text-6xl">▶</div>
+                        </div>
+                        <div class="absolute bottom-1 right-1 md:bottom-2 md:right-2 bg-black bg-opacity-80 px-1.5 py-0.5 md:px-2 md:py-1">
+                            <div class="text-green-400 font-mono text-xs">
+                                ${project.stats.views} | ${project.stats.duration} | ${project.stats.fps}FPS
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 md:p-4">
+                        <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-2">${project.title}</h3>
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="px-1.5 py-0.5 md:px-2 md:py-1 bg-gray-800 text-gray-300 font-mono text-xs">
+                                ${project.category}
+                            </span>
+                        </div>
+                        <p class="text-gray-300 font-mono text-xs md:text-sm mb-3 md:mb-4 leading-relaxed">${project.description}</p>
+
+                        <div id="project-details-${project.id}" class="hidden border-t border-gray-700 pt-3 md:pt-4 fade-in">
+                            <h4 class="text-green-400 font-mono text-xs md:text-sm mb-2">TECH_STACK:</h4>
+                            <div class="flex flex-wrap gap-1 md:gap-2 mb-3 md:mb-4">
+                                ${project.tech.map(tech =>
+                                    `<span class="px-1.5 py-0.5 md:px-2 md:py-1 bg-green-400 text-black font-mono text-xs">${tech}</span>`
+                                ).join('')}
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-1 sm:space-y-0 text-xs font-mono">
+                                <span class="text-gray-300">VIEWS: <span class="text-green-400">${project.stats.views}</span></span>
+                                <span class="text-gray-300">DURATION: <span class="text-green-400">${project.stats.duration}</span></span>
+                                <span class="text-gray-300">FPS: <span class="text-green-400">${project.stats.fps}</span></span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(projectCard);
+            });
+        }
+
+        // Toggle project details
+        function toggleProject(projectId) {
+            const details = document.getElementById(`project-details-${projectId}`);
+            if (selectedProject === projectId) {
+                details.classList.add('hidden');
+                selectedProject = null;
+            } else {
+                // Hide other project details
+                if (selectedProject) {
+                    document.getElementById(`project-details-${selectedProject}`).classList.add('hidden');
+                }
+                details.classList.remove('hidden');
+                selectedProject = projectId;
+            }
+        }
+
+        // Render stats
+        function renderStats() {
+            const grid = document.getElementById('stats-grid');
+            grid.innerHTML = '';
+
+            portfolioData.stats.forEach(stat => {
+                const statCard = document.createElement('div');
+                statCard.className = 'bg-gray-900 border border-gray-700 p-3 md:p-4 text-center';
+                statCard.innerHTML = `
+                    <div class="text-xl md:text-2xl font-mono font-bold text-green-400 mb-1 md:mb-2">
+                        ${stat.value}
+                    </div>
+                    <div class="text-gray-400 font-mono text-xs md:text-sm leading-tight">
+                        ${stat.label.replace(/_/g, ' ')}
+                    </div>
+                `;
+                grid.appendChild(statCard);
+            });
+        }
+
+        // Render client reviews
+        function renderReviews() {
+            const container = document.getElementById('reviews-container');
+            container.innerHTML = '';
+
+            portfolioData.reviews.forEach((review, index) => {
+                const reviewDiv = document.createElement('div');
+                reviewDiv.className = `review-item transition-all duration-500 ${activeSkill === index ? 'opacity-100' : 'opacity-60'}`;
+
+                // Generate star rating
+                const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+
+                reviewDiv.innerHTML = `
+                    <div class="border border-gray-600 rounded p-3 md:p-4 bg-gray-800 text-center">
+                        <div class="flex items-center justify-center space-x-3 mb-2">
+                            <span class="text-green-400 font-mono text-sm md:text-base font-bold">${review.client}</span>
+                            <span class="star-rating text-lg md:text-xl">${stars}</span>
+                        </div>
+                        <div class="text-green-400 font-mono text-xs md:text-sm">
+                            Satisfaction: ${review.satisfaction}%
+                        </div>
+                    </div>
+                `;
+                container.appendChild(reviewDiv);
+            });
+        }
+
+        // Start review rotation
+        function startReviewRotation() {
+            setInterval(() => {
+                activeSkill = (activeSkill + 1) % portfolioData.reviews.length;
+                renderReviews();
+            }, 4000);
+        }
+
+        // Render timeline
+        function renderTimeline() {
+            const container = document.getElementById('timeline-container');
+            container.innerHTML = '';
+
+            portfolioData.timeline.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 p-3 md:p-4 bg-gray-800 rounded';
+                timelineItem.innerHTML = `
+                    <div class="flex items-center space-x-3 sm:space-x-4">
+                        <div class="w-12 md:w-16 text-green-400 font-mono text-xs md:text-sm font-bold">${item.year}</div>
+                        <div class="w-3 h-3 md:w-4 md:h-4 border-2 border-green-400 bg-black rounded-full"></div>
+                        <div class="flex-1 text-gray-300 font-mono text-xs md:text-sm leading-relaxed">${item.event}</div>
+                    </div>
+                    <div class="sm:ml-16 md:ml-20 px-2 py-1 text-xs font-mono border w-fit ${
+                        item.status === 'CURRENT'
+                            ? 'border-green-400 text-green-400'
+                            : 'border-gray-600 text-gray-400'
+                    }">
+                        ${item.status}
+                    </div>
+                `;
+                container.appendChild(timelineItem);
+            });
+        }
+
+        // Render contact methods
+        function renderContactMethods() {
+            const container = document.getElementById('contact-methods');
+            container.innerHTML = '';
+
+            portfolioData.contactMethods.forEach((method, index) => {
+                const methodDiv = document.createElement('div');
+                methodDiv.className = 'flex items-center space-x-3 md:space-x-4 p-3 bg-gray-800 hover:bg-gray-700 transition-colors cursor-pointer rounded';
+                methodDiv.onclick = () => {
+                    if (method.command.startsWith('http') || method.command.startsWith('mailto') || method.command.startsWith('tel')) {
+                        window.open(method.command, '_blank');
+                    }
+                };
+                methodDiv.innerHTML = `
+                    <div class="text-xl md:text-2xl">${method.icon}</div>
+                    <div class="flex-1 min-w-0">
+                        <div class="text-gray-400 font-mono text-xs md:text-sm truncate">${method.label}</div>
+                        <div class="text-green-400 font-mono text-xs md:text-sm truncate">${method.value}</div>
+                    </div>
+                    <div class="text-green-400 font-mono text-xs hidden sm:block">CLICK_TO_COPY</div>
+                `;
+                container.appendChild(methodDiv);
+            });
+        }
+
+        // Setup navigation
+        function setupNavigation() {
+            const navButtons = document.querySelectorAll('[data-section]');
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    scrollToSection(sectionId);
+                });
+            });
+        }
+
+        // Setup mobile menu
+        function setupMobileMenu() {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            menuBtn.addEventListener('click', function() {
+                mobileNav.classList.toggle('hidden');
+                menuBtn.classList.toggle('active');
+            });
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Close mobile menu if open
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            if (mobileNav && !mobileNav.classList.contains('hidden')) {
+                mobileNav.classList.add('hidden');
+                mobileMenuBtn.classList.remove('active');
+            }
+        }
+
+        // Setup scroll handling
+        function setupScrollHandling() {
+            const sections = ['home', 'projects', 'about', 'contact'];
+            
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY + 100;
+                
+                for (const section of sections) {
+                    const element = document.getElementById(section);
+                    if (element) {
+                        const { offsetTop, offsetHeight } = element;
+                        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                            updateActiveNavItem(section);
+                            break;
+                        }
+                    }
+                }
+            });
+        }
+
+        // Update active navigation item
+        function updateActiveNavItem(activeSection) {
+            if (currentSection !== activeSection) {
+                currentSection = activeSection;
+                
+                const navItems = document.querySelectorAll('.nav-item');
+                navItems.forEach(item => {
+                    const section = item.getAttribute('data-section');
+                    if (section === activeSection) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        // Setup contact form
+        function setupContactForm() {
+            const form = document.getElementById('contact-form');
+            const successMessage = document.getElementById('form-success');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                // Simulate form submission
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                
+                submitButton.textContent = 'SENDING...';
+                submitButton.disabled = true;
+                submitButton.style.backgroundColor = 'var(--gray-600)';
+                submitButton.style.borderColor = 'var(--gray-600)';
+                submitButton.style.color = 'var(--gray-400)';
+                
+                setTimeout(() => {
+                    // Reset form
+                    form.reset();
+                    
+                    // Show success message
+                    successMessage.classList.remove('hidden');
+                    
+                    // Reset button
+                    submitButton.textContent = 'MESSAGE_SENT!';
+                    submitButton.style.backgroundColor = 'var(--primary-green)';
+                    submitButton.style.borderColor = 'var(--primary-green)';
+                    submitButton.style.color = 'var(--black-bg)';
+                    
+                    setTimeout(() => {
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                        submitButton.style.backgroundColor = 'var(--primary-green)';
+                        submitButton.style.borderColor = 'var(--primary-green)';
+                        submitButton.style.color = 'var(--black-bg)';
+                        successMessage.classList.add('hidden');
+                    }, 3000);
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

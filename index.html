@@ -6,6 +6,13 @@
     <title>Glenn.exe - Video Editor Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // Initialize EmailJS
+        (function() {
+            emailjs.init('uGgyXyHIGrg15hlZF');
+        })();
+    </script>
     <style>
         /* Custom Pixel Dark Theme Styles */
         :root {
@@ -327,6 +334,7 @@
                     <button class="nav-item active" data-section="home">HOME</button>
                     <button class="nav-item" data-section="projects">PROJECTS</button>
                     <button class="nav-item" data-section="about">ABOUT_ME</button>
+                    <button class="nav-item" data-section="faq">FAQ</button>
                 </nav>
 
                 <!-- Desktop Contact Button -->
@@ -348,6 +356,7 @@
                     <button class="nav-item text-left w-full" data-section="home">HOME</button>
                     <button class="nav-item text-left w-full" data-section="projects">PROJECTS</button>
                     <button class="nav-item text-left w-full" data-section="about">ABOUT_ME</button>
+                    <button class="nav-item text-left w-full" data-section="faq">FAQ</button>
                     <button class="nav-item text-left w-full py-2 px-3 bg-red-500 border-2 border-white text-white hover:bg-red-600 transition-colors text-center" data-section="contact">CONTACT</button>
                 </div>
             </div>
@@ -398,12 +407,13 @@
                     <div class="text-green-400 font-mono text-xs md:text-sm">
                         <p class="mb-2">$ cat about.txt</p>
                         <p class="text-gray-300 leading-relaxed">
-                            Bringing stories to life through video editing, transitions, and
-                            compelling visual captions that captivate audiences worldwide.
+                            Passionate video editor and aspiring web developer, blending creativity with technology 
+                            to craft engaging visuals, explore AI tools, and build pixel-inspired games.
                         </p>
                         <p class="mt-3 md:mt-4 mb-2">$ ls skills/</p>
-                        <p class="text-gray-300 text-xs md:text-sm">kdenlive.exe | transcriber.dll | aseprite.exe</p>
-                        <p class="text-gray-300 text-xs md:text-sm">capcut_pro.exe | pixel_game.dll | web_dev.dll</p>
+                        <p class="text-gray-300 text-xs md:text-sm">Video Editing (Kdenlive) | Audio Transcription</p>
+                        <p class="text-gray-300 text-xs md:text-sm">Video Content Creation (CapCut Pro)</p>
+                        <p class="text-gray-300 text-xs md:text-sm">Pixel Art (Aseprite) | Game Development | Web Development</p>
                     </div>
                 </div>
 
@@ -481,18 +491,24 @@
                                     <p>> Status: [ONLINE]</p>
                                     <div class="mt-3 md:mt-4 text-gray-300 leading-relaxed">
                                         <p class="mb-3 md:mb-4">
-                                            Hello! I'm Glenn, a passionate video editor with over 8 years of experience
-                                            in the digital media industry. I specialize in creating compelling visual
-                                            narratives that engage and inspire audiences.
+                                            Hello, my name is Glenn, and I'm a passionate digital media enthusiast who works as a dedicated video editor and hopes to become a web developer. 
+                                            I enjoy turning concepts into images that engage viewers and make an impression.
                                         </p>
                                         <p class="mb-3 md:mb-4">
-                                            My journey began in 2016 when I discovered the power of storytelling through
-                                            video. Since then, I've worked with diverse clients ranging from indie
-                                            creators to major brands, always pushing the boundaries of visual creativity.
+                                            My creative journey started in 2025 when I discovered how powerful storytelling can be through video. 
+                                            Since then, I&#39;ve taken on a variety of personal projects, constantly experimenting and pushing myself to find new ways to express creativity.
+                                        </p>
+                                        <p class="mb-3 md:mb-4">
+                                            Beyond editing and coding, I&#39;ve also developed skills in working with AI tools like ChatGPT, Copilot, DeepSeek, Gemini, and Grok. 
+                                            I enjoy exploring how these technologies can boost efficiency and creativity, and I&#39;m always eager to learn more as the AI field evolves.
+                                        </p>
+                                        <p class="mb-3 md:mb-4">
+                                            Using engines like Godot, MonoGame, and Unity, I specialise in making pixel-style games because I'm equally passionate about game development. 
+                                            It seems like yet another fascinating way to combine interactive design and storytelling.
                                         </p>
                                         <p>
-                                            When I'm not editing, you'll find me exploring new techniques, gaming,
-                                            or contributing to open-source video editing tools.
+                                            Outside of work, you&#39;ll often find me trying out new techniques, gaming, building websites, or diving into the latest tech trends. 
+                                            I&#39;m also a big believer in open-source communities, and I enjoy giving back by testing tools or contributing to projects—especially those related to video editing and digital creativity.
                                         </p>
                                     </div>
                                 </div>
@@ -542,6 +558,77 @@
             </div>
         </section>
 
+        <!-- FAQ Section -->
+        <section id="faq" class="min-h-screen bg-gray-900 py-16 md:py-20">
+            <div class="container mx-auto px-4">
+                <!-- Section Header -->
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-mono font-bold text-green-400 mb-4">
+                        < FAQ.EXE />
+                    </h2>
+                    <div class="w-24 md:w-32 h-1 bg-green-400 mx-auto mb-4 md:mb-6"></div>
+                    <p class="text-gray-300 font-mono text-sm md:text-base max-w-2xl mx-auto px-4">
+                        Frequently asked questions about my services, process, and capabilities.
+                    </p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="terminal-window p-4 md:p-6">
+                        <div class="terminal-header mb-4 md:mb-6">
+                            <div class="terminal-dots">
+                                <div class="terminal-dot dot-red"></div>
+                                <div class="terminal-dot dot-yellow"></div>
+                                <div class="terminal-dot dot-green"></div>
+                            </div>
+                            <span class="ml-2 md:ml-4 text-green-400 text-xs md:text-sm font-mono">~/faq/questions.db</span>
+                        </div>
+
+                        <div class="space-y-4 md:space-y-6">
+                            <div class="border-b border-gray-700 pb-4 md:pb-6">
+                                <div class="text-green-400 font-mono text-sm md:text-base mb-2">> How long does a typical project take?</div>
+                                <div class="text-gray-300 font-mono text-xs md:text-sm ml-4">Most projects: 1-3 weeks depending on complexity and scope</div>
+                            </div>
+
+                            <div class="border-b border-gray-700 pb-4 md:pb-6">
+                                <div class="text-green-400 font-mono text-sm md:text-base mb-2">> What's your minimum project budget?</div>
+                                <div class="text-gray-300 font-mono text-xs md:text-sm ml-4">Starting at $10 for simple edits, $50+ for basic projects</div>
+                            </div>
+
+                            <div class="border-b border-gray-700 pb-4 md:pb-6">
+                                <div class="text-green-400 font-mono text-sm md:text-base mb-2">> Do you offer rush jobs?</div>
+                                <div class="text-gray-300 font-mono text-xs md:text-sm ml-4">No, I prefer quality over speed. All projects are completed with care.</div>
+                            </div>
+
+                            <div class="border-b border-gray-700 pb-4 md:pb-6">
+                                <div class="text-green-400 font-mono text-sm md:text-base mb-2">> File formats you work with?</div>
+                                <div class="text-gray-300 font-mono text-xs md:text-sm ml-4">All major formats: MP4, MOV, AVI, ProRes, etc. I can handle most video formats.</div>
+                            </div>
+
+                            <div class="border-b border-gray-700 pb-4 md:pb-6">
+                                <div class="text-green-400 font-mono text-sm md:text-base mb-2">> What tools do you use for editing?</div>
+                                <div class="text-gray-300 font-mono text-xs md:text-sm ml-4">CapCut and Kdenlive for now. I'm always learning new tools to improve my workflow.</div>
+                            </div>
+
+                            <div class="border-b border-gray-700 pb-4 md:pb-6">
+                                <div class="text-green-400 font-mono text-sm md:text-base mb-2">> Can you also edit audio?</div>
+                                <div class="text-gray-300 font-mono text-xs md:text-sm ml-4">Yes, I can handle basic audio cleanup, syncing, and enhancement within video projects.</div>
+                            </div>
+
+                            <div class="border-b border-gray-700 pb-4 md:pb-6">
+                                <div class="text-green-400 font-mono text-sm md:text-base mb-2">> What programming languages do you work with?</div>
+                                <div class="text-gray-300 font-mono text-xs md:text-sm ml-4">I primarily work with JavaScript, HTML, and CSS. I have some basics with C#, Python, and Java.</div>
+                            </div>
+
+                            <div>
+                                <div class="text-green-400 font-mono text-sm md:text-base mb-2">> How do I get started with a project?</div>
+                                <div class="text-gray-300 font-mono text-xs md:text-sm ml-4">Simply fill out the contact form above with your project details, and I'll get back to you within 24 hours!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact" class="min-h-screen bg-gray-900 py-16 md:py-20">
             <div class="container mx-auto px-4">
@@ -556,111 +643,96 @@
                     </p>
                 </div>
 
-                <div class="max-w-6xl mx-auto">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-                        <!-- Contact Form -->
-                        <div class="bg-black border-2 border-green-400 p-4 md:p-6">
-                            <div class="terminal-header mb-4 md:mb-6">
-                                <div class="terminal-dots">
-                                    <div class="terminal-dot dot-red"></div>
-                                    <div class="terminal-dot dot-yellow"></div>
-                                    <div class="terminal-dot dot-green"></div>
-                                </div>
-                                <span class="ml-2 md:ml-4 text-green-400 text-xs md:text-sm font-mono">~/contact/new_project.exe</span>
+                <div class="max-w-4xl mx-auto">
+                    <!-- Contact Form - Centered -->
+                    <div class="bg-black border-2 border-green-400 p-4 md:p-6">
+                        <div class="terminal-header mb-4 md:mb-6">
+                            <div class="terminal-dots">
+                                <div class="terminal-dot dot-red"></div>
+                                <div class="terminal-dot dot-yellow"></div>
+                                <div class="terminal-dot dot-green"></div>
+                            </div>
+                            <span class="ml-2 md:ml-4 text-green-400 text-xs md:text-sm font-mono">~/contact/new_project.exe</span>
+                        </div>
+
+                        <form id="contact-form" class="space-y-3 md:space-y-4">
+                            <div>
+                                <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">CLIENT_NAME:</label>
+                                <input type="text" name="name" required class="form-input text-sm md:text-base" placeholder="Enter your name...">
                             </div>
 
-                            <form id="contact-form" class="space-y-3 md:space-y-4">
-                                <div>
-                                    <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">CLIENT_NAME:</label>
-                                    <input type="text" name="name" required class="form-input text-sm md:text-base" placeholder="Enter your name...">
-                                </div>
+                            <div>
+                                <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">EMAIL_ADDRESS:</label>
+                                <input type="email" name="email" required class="form-input text-sm md:text-base" placeholder="your.email@domain.com">
+                            </div>
 
-                                <div>
-                                    <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">EMAIL_ADDRESS:</label>
-                                    <input type="email" name="email" required class="form-input text-sm md:text-base" placeholder="your.email@domain.com">
-                                </div>
+                            <div>
+                                <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">PROJECT_TYPE:</label>
+                                <select name="project" class="form-input text-sm md:text-base">
+                                    <option value="game_development">GAME_DEVELOPMENT</option>
+                                    <option value="web_development">WEB_DEVELOPMENT</option>
+                                    <option value="music_video">MUSIC_VIDEO</option>
+                                    <option value="youtube">YOUTUBE_CONTENT</option>
+                                    <option value="other">OTHER</option>
+                                </select>
+                            </div>
 
-                                <div>
-                                    <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">PROJECT_TYPE:</label>
-                                    <select name="project" class="form-input text-sm md:text-base">
-                                        <option value="commercial">COMMERCIAL</option>
-                                        <option value="music_video">MUSIC_VIDEO</option>
-                                        <option value="youtube">YOUTUBE_CONTENT</option>
-                                        <option value="corporate">CORPORATE_VIDEO</option>
-                                        <option value="wedding">WEDDING/EVENT</option>
-                                        <option value="other">OTHER</option>
+                            <div>
+                                <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">BUDGET_RANGE:</label>
+                                <div class="flex gap-2">
+                                    <select name="currency" class="form-input text-sm md:text-base" style="width: 120px; flex-shrink: 0;">
+                                        <option value="$">USD ($)</option>
+                                        <option value="€">EUR (€)</option>
+                                        <option value="£">GBP (£)</option>
+                                        <option value="¥">JPY (¥)</option>
+                                        <option value="₱">PHP (₱)</option>
+                                        <option value="C$">CAD (C$)</option>
+                                        <option value="A$">AUD (A$)</option>
                                     </select>
+                                    <input type="text" name="budget_amount" class="form-input text-sm md:text-base flex-1" placeholder="10 - 5,000+">
                                 </div>
+                            </div>
 
-                                <div>
-                                    <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">BUDGET_RANGE:</label>
-                                    <input type="text" name="budget" class="form-input text-sm md:text-base" placeholder="$1,000 - $5,000">
-                                </div>
+                            <div>
+                                <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">PROJECT_DETAILS:</label>
+                                <textarea name="message" required rows="4" class="form-input resize-none text-sm md:text-base" placeholder="Describe your project, timeline, and vision..."></textarea>
+                            </div>
 
-                                <div>
-                                    <label class="block text-green-400 font-mono text-xs md:text-sm mb-1 md:mb-2">PROJECT_DETAILS:</label>
-                                    <textarea name="message" required rows="4" class="form-input resize-none text-sm md:text-base" placeholder="Describe your project, timeline, and vision..."></textarea>
-                                </div>
+                            <button type="submit" class="btn-primary w-full text-sm md:text-base py-3 md:py-4">
+                                SEND_MESSAGE.exe
+                            </button>
+                        </form>
 
-                                <button type="submit" class="btn-primary w-full text-sm md:text-base py-3 md:py-4">
-                                    SEND_MESSAGE.exe
-                                </button>
-                            </form>
+                        <div id="form-success" class="hidden mt-3 md:mt-4 p-3 bg-green-400 text-black font-mono text-xs md:text-sm">
+                            ✓ Message sent successfully! I'll get back to you within 24 hours.
+                        </div>
+                    </div>
 
-                            <div id="form-success" class="hidden mt-3 md:mt-4 p-3 bg-green-400 text-black font-mono text-xs md:text-sm">
-                                ✓ Message sent successfully! I'll get back to you within 24 hours.
+                    <!-- Contact Info - Below Form -->
+                    <div class="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        <!-- Direct Contact Methods -->
+                        <div class="bg-black border-2 border-gray-700 p-4 md:p-6">
+                            <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-3 md:mb-4">DIRECT_CONTACT.cfg</h3>
+                            <div class="space-y-3 md:space-y-4" id="contact-methods">
+                                <!-- Contact methods will be populated by JavaScript -->
                             </div>
                         </div>
 
-                        <!-- Contact Info & Social -->
-                        <div class="space-y-4 md:space-y-6">
-                            <!-- Direct Contact Methods -->
-                            <div class="bg-black border-2 border-gray-700 p-4 md:p-6">
-                                <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-3 md:mb-4">DIRECT_CONTACT.cfg</h3>
-                                <div class="space-y-3 md:space-y-4" id="contact-methods">
-                                    <!-- Contact methods will be populated by JavaScript -->
+                        <!-- Availability Status -->
+                        <div class="bg-black border-2 border-gray-700 p-4 md:p-6">
+                            <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-3 md:mb-4">STATUS.log</h3>
+                            <div class="space-y-2 md:space-y-3">
+                                <div class="flex items-center space-x-2 md:space-x-3">
+                                    <div class="w-2 h-2 md:w-3 md:h-3 bg-green-400 rounded-full animate-pulse"></div>
+                                    <span class="text-green-400 font-mono text-xs md:text-sm">AVAILABLE_FOR_NEW_PROJECTS</span>
                                 </div>
-                            </div>
-
-                            <!-- Availability Status -->
-                            <div class="bg-black border-2 border-gray-700 p-4 md:p-6">
-                                <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-3 md:mb-4">STATUS.log</h3>
-                                <div class="space-y-2 md:space-y-3">
-                                    <div class="flex items-center space-x-2 md:space-x-3">
-                                        <div class="w-2 h-2 md:w-3 md:h-3 bg-green-400 rounded-full animate-pulse"></div>
-                                        <span class="text-green-400 font-mono text-xs md:text-sm">AVAILABLE_FOR_NEW_PROJECTS</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2 md:space-x-3">
-                                        <div class="w-2 h-2 md:w-3 md:h-3 bg-yellow-400"></div>
-                                        <span class="text-gray-300 font-mono text-xs md:text-sm">RESPONSE_TIME: < 24_HOURS</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2 md:space-x-3">
-                                        <div class="w-2 h-2 md:w-3 md:h-3 bg-blue-400"></div>
-                                        <span class="text-gray-300 font-mono text-xs md:text-sm">TIMEZONE: UTC-5 (EST)</span>
-                                    </div>
+                                <div class="flex items-center space-x-2 md:space-x-3">
+                                    <div class="w-2 h-2 md:w-3 md:h-3 bg-yellow-400"></div>
+                                    <span class="text-gray-300 font-mono text-xs md:text-sm">RESPONSE_TIME: < 24_HOURS</span>
                                 </div>
-                            </div>
-
-                            <!-- FAQ Terminal -->
-                            <div class="bg-black border-2 border-gray-700 p-4 md:p-6">
-                                <h3 class="text-green-400 font-mono font-bold text-sm md:text-base mb-3 md:mb-4">FAQ.exe</h3>
-                                <div class="space-y-2 md:space-y-3 text-xs md:text-sm font-mono">
-                                    <div>
-                                        <div class="text-green-400">> How long does a typical project take?</div>
-                                        <div class="text-gray-300 ml-2">Most projects: 1-3 weeks depending on complexity</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-green-400">> What's your minimum project budget?</div>
-                                        <div class="text-gray-300 ml-2">Starting at $500 for simple edits</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-green-400">> Do you offer rush jobs?</div>
-                                        <div class="text-gray-300 ml-2">Yes, with 50% rush fee for <48hr delivery</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-green-400">> File formats you work with?</div>
-                                        <div class="text-gray-300 ml-2">All major formats: MP4, MOV, AVI, ProRes, etc.</div>
-                                    </div>
+                                <div class="flex items-center space-x-2 md:space-x-3">
+                                    <div class="w-2 h-2 md:w-3 md:h-3 bg-blue-400"></div>
+                                    <span class="text-gray-300 font-mono text-xs md:text-sm">TIMEZONE: Asia/Manila GMT+8</span>
                                 </div>
                             </div>
                         </div>
@@ -718,43 +790,40 @@
             reviews: [
                 {
                     client: '***',
-                    rating: 5,
-                    satisfaction: 98
+                    rating: 'NA',
+                    satisfaction: 'NA'
                 },
                 {
                     client: '***',
-                    rating: 5,
-                    satisfaction: 100
+                    rating: 'NA',
+                    satisfaction: 'NA'
                 },
                 {
                     client: '***',
-                    rating: 5,
-                    satisfaction: 97
+                    rating: 'NA',
+                    satisfaction: 'NA'
                 },
                 {
                     client: '***',
-                    rating: 4,
-                    satisfaction: 95
+                    rating: 'NA',
+                    satisfaction: 'NA'
                 }
             ],
             stats: [
-                { label: 'TOTAL_CLIENTS', value: '150+' },
-                { label: 'AVERAGE_RATING', value: '4.9/5' },
-                { label: 'SATISFACTION_RATE', value: '98%' },
-                { label: 'REPEAT_CLIENTS', value: '65%' }
+                { label: 'TOTAL_CLIENTS', value: '0' },
+                { label: 'AVERAGE_RATING', value: 'N/A' },
+                { label: 'SATISFACTION_RATE', value: 'N/A' },
+                { label: 'REPEAT_CLIENTS', value: 'N/A' }
             ],
             stats: [
-                { label: 'TOTAL_CLIENTS', value: '150+' },
-                { label: 'AVERAGE_RATING', value: '4.9/5' },
-                { label: 'SATISFACTION_RATE', value: '98%' },
-                { label: 'REPEAT_CLIENTS', value: '65%' }
+                { label: 'TOTAL_CLIENTS', value: '0' },
+                { label: 'AVERAGE_RATING', value: 'N/A' },
+                { label: 'SATISFACTION_RATE', value: 'N/A' },
+                { label: 'REPEAT_CLIENTS', value: 'N/A' }
             ],
             timeline: [
-                { year: '2024', event: 'Founded independent video production studio', status: 'CURRENT' },
-                { year: '2022', event: 'Senior Video Editor at Digital Media Co.', status: 'COMPLETE' },
-                { year: '2020', event: 'Freelance Video Editor & Motion Designer', status: 'COMPLETE' },
-                { year: '2018', event: 'Junior Editor at Creative Agency', status: 'COMPLETE' },
-                { year: '2016', event: 'Started video editing journey', status: 'COMPLETE' }
+                { year: '2025', event: 'Became a video editor and front end web developer', status: 'CURRENT' },
+                { year: '2024', event: 'Web Developer studying at STI College', status: 'COMPLETE' }
             ],
             contactMethods: [
                 {
@@ -1048,6 +1117,51 @@
             }, 2000);
         }
 
+        // Show themed email success notification
+        function showEmailSuccessNotification() {
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="background: var(--gray-900); border: 2px solid var(--primary-green); padding: 16px; border-radius: 8px; max-width: 400px; font-family: 'Courier Prime', monospace; color: var(--primary-green);">
+                    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                        <div style="width: 12px; height: 12px; background: var(--primary-green); border-radius: 50%; margin-right: 8px;"></div>
+                        <span style="font-size: 14px; font-weight: bold;">EMAIL_SENT.EXE</span>
+                    </div>
+                    <div style="font-size: 12px; margin-bottom: 8px;">
+                        <span style="color: var(--primary-green);">></span> Message successfully transmitted
+                    </div>
+                    <div style="font-size: 12px; margin-bottom: 8px;">
+                        <span style="color: var(--primary-green);">></span> Response expected within 24 hours
+                    </div>
+                    <div style="font-size: 12px;">
+                        <span style="color: var(--primary-green);">></span> Status: <span style="color: #22c55e;">SUCCESS</span>
+                    </div>
+                </div>
+            `;
+            notification.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.8);
+                z-index: 10000;
+                opacity: 0;
+                transition: all 0.3s ease;
+            `;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 100);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 4000);
+        }
+
         // Render contact methods
         function renderContactMethods() {
             const container = document.getElementById('contact-methods');
@@ -1112,7 +1226,7 @@
 
         // Setup scroll handling
         function setupScrollHandling() {
-            const sections = ['home', 'projects', 'about', 'contact'];
+            const sections = ['home', 'projects', 'about', 'faq', 'contact'];
             
             window.addEventListener('scroll', function() {
                 const scrollPosition = window.scrollY + 100;
@@ -1151,46 +1265,72 @@
         function setupContactForm() {
             const form = document.getElementById('contact-form');
             const successMessage = document.getElementById('form-success');
-            
+
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
+
                 // Get form data
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData);
-                
-                // Simulate form submission
+
+                // Prepare template parameters for EmailJS
+                const templateParams = {
+                    from_name: data.name,
+                    from_email: data.email,
+                    project: data.project,
+                    budget: `${data.currency}${data.budget_amount}`,
+                    message: data.message,
+                    to_name: 'Glenn' // You can customize this
+                };
+
+                // Update button state
                 const submitButton = form.querySelector('button[type="submit"]');
                 const originalText = submitButton.textContent;
-                
+
                 submitButton.textContent = 'SENDING...';
                 submitButton.disabled = true;
                 submitButton.style.backgroundColor = 'var(--gray-600)';
                 submitButton.style.borderColor = 'var(--gray-600)';
                 submitButton.style.color = 'var(--gray-400)';
-                
-                setTimeout(() => {
-                    // Reset form
-                    form.reset();
-                    
-                    // Show success message
-                    successMessage.classList.remove('hidden');
-                    
-                    // Reset button
-                    submitButton.textContent = 'MESSAGE_SENT!';
-                    submitButton.style.backgroundColor = 'var(--primary-green)';
-                    submitButton.style.borderColor = 'var(--primary-green)';
-                    submitButton.style.color = 'var(--black-bg)';
-                    
-                    setTimeout(() => {
+
+                // Send email using EmailJS
+                emailjs.send('service_jwi858p', 'template_grx9st8', templateParams)
+                    .then(function(response) {
+                        console.log('Email sent successfully!', response.status, response.text);
+
+                        // Reset form
+                        form.reset();
+
+                        // Show themed success notification
+                        showEmailSuccessNotification();
+
+                        // Reset button
+                        submitButton.textContent = 'MESSAGE_SENT!';
+                        submitButton.style.backgroundColor = 'var(--primary-green)';
+                        submitButton.style.borderColor = 'var(--primary-green)';
+                        submitButton.style.color = 'var(--black-bg)';
+
+                        setTimeout(() => {
+                            submitButton.textContent = originalText;
+                            submitButton.disabled = false;
+                            submitButton.style.backgroundColor = 'var(--primary-green)';
+                            submitButton.style.borderColor = 'var(--primary-green)';
+                            submitButton.style.color = 'var(--black-bg)';
+                        }, 3000);
+                    })
+                    .catch(function(error) {
+                        console.error('Failed to send email:', error);
+
+                        // Show error message
+                        showNotification('Failed to send message. Please try again.', 'error');
+
+                        // Reset button
                         submitButton.textContent = originalText;
                         submitButton.disabled = false;
                         submitButton.style.backgroundColor = 'var(--primary-green)';
                         submitButton.style.borderColor = 'var(--primary-green)';
                         submitButton.style.color = 'var(--black-bg)';
-                        successMessage.classList.add('hidden');
-                    }, 3000);
-                }, 2000);
+                    });
             });
         }
     </script>

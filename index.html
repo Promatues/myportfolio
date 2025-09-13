@@ -345,10 +345,8 @@
             border: 2px solid var(--primary-green);
             border-radius: 8px;
             padding: 1rem;
-            max-width: min(90vw, 1200px);
-            max-height: min(90vh, 675px);
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
@@ -954,7 +952,8 @@
                     stats: { views: '280', duration: '01:04', fps: '30' },
                     status: 'COMPLETED',
                     poster: './assets/thumbnail1.png',
-                    video: './assets/fanartc1.mp4',
+                    video: 'https://drive.google.com/file/d/1N3iRreOMIKt_MAeGBNtvSt5ys0EY6GI8/view?usp=drive_link',
+                    driveEmbed: true,
                     credits: {
                         rawVideos: {
                             owner: 'Creative Attribute',
@@ -972,7 +971,8 @@
                     stats: { views: '3', duration: '02:53', fps: '30' },
                     status: 'COMPLETED',
                     poster: './assets/thumbnail2.png',
-                    video: './assets/musicVid2.mp4',
+                    video: 'https://drive.google.com/file/d/1zUzggafyJdNf7RDGkiEtwn3qFapcarz-/view?usp=drive_link',
+                    driveEmbed: true,
                     credits: {
                         createdBy: {
                             name: 'Glenniel',
@@ -1047,6 +1047,16 @@
         let activeSkill = 0;
         let currentSection = 'home';
 
+        // Google Drive link conversion function
+        function convertDriveLinkToEmbed(driveLink) {
+            // Extract file ID from sharing link
+            const fileId = driveLink.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+            if (!fileId) return null;
+
+            // Return embeddable URL
+            return `https://drive.google.com/file/d/${fileId}/preview`;
+        }
+
         // Initialize the portfolio
         document.addEventListener('DOMContentLoaded', function() {
             initializeTypewriter();
@@ -1109,8 +1119,8 @@
                         </div>
                     </div>
 
-                    <div class="relative aspect-video bg-gray-800 overflow-hidden ${project.video ? 'cursor-pointer' : ''}" ${project.video ? `onclick="openVideoModal('${project.video}', '${project.title}', '${project.poster || ''}')"` : ''}>
-                        ${project.video ? `<video src="${project.video}" class="w-full h-full object-cover" poster="${project.poster || ''}" muted preload="metadata"></video>` : `<img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="hidden absolute inset-0 bg-gray-800 flex items-center justify-center"><div class="text-center"><div class="text-green-400 font-mono text-2xl md:text-4xl mb-2">🎬</div><div class="text-gray-400 font-mono text-xs md:text-sm">${project.title}</div></div></div>`}
+                    <div class="relative aspect-video bg-gray-800 overflow-hidden ${project.video ? 'cursor-pointer' : ''}" ${project.video ? `onclick="openVideoModal('${project.video}', '${project.title}', '${project.poster || ''}', ${project.driveEmbed || false})"` : ''}>
+                        ${project.video ? (project.driveEmbed ? `<img src="${project.poster || ''}" alt="${project.title}" class="w-full h-full object-cover">` : `<video src="${project.video}" class="w-full h-full object-cover" poster="${project.poster || ''}" muted preload="metadata"></video>`) : `<img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="hidden absolute inset-0 bg-gray-800 flex items-center justify-center"><div class="text-center"><div class="text-green-400 font-mono text-2xl md:text-4xl mb-2">🎬</div><div class="text-gray-400 font-mono text-xs md:text-sm">${project.title}</div></div></div>`}
                         ${project.video ? `<div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center group">
                             <div class="bg-green-400 bg-opacity-90 rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center transform scale-75 group-hover:scale-100 transition-all duration-300 shadow-lg">
                                 <div class="text-black font-mono text-xl md:text-2xl font-bold">▶</div>
@@ -1507,50 +1517,78 @@
             }
     
             // Video Modal Functions
-            function openVideoModal(videoSrc, title, poster) {
+            function openVideoModal(videoSrc, title, poster, isDriveLink = false) {
                 const modal = document.getElementById('video-modal');
                 const modalVideo = document.getElementById('modal-video');
                 const modalTitle = document.getElementById('modal-title');
-    
-                if (!modal || !modalVideo || !modalTitle) {
+                const videoContainer = document.querySelector('#video-modal .video-container');
+
+                if (!modal || !modalVideo || !modalTitle || !videoContainer) {
                     console.error('Modal elements not found');
                     return;
                 }
-    
+
                 modalTitle.textContent = title;
-                modalVideo.src = videoSrc;
-                if (poster) {
-                    modalVideo.poster = poster;
+
+                if (isDriveLink) {
+                    // Hide video element and use iframe for Drive
+                    modalVideo.style.display = 'none';
+                    const embedUrl = convertDriveLinkToEmbed(videoSrc);
+                    if (embedUrl) {
+                        const iframe = document.createElement('iframe');
+                        iframe.src = embedUrl;
+                        iframe.width = '100%';
+                        iframe.height = '100%';
+                        iframe.frameBorder = '0';
+                        iframe.allowFullscreen = true;
+                        iframe.style.border = 'none';
+                        videoContainer.appendChild(iframe);
+                    }
+                } else {
+                    // Show video element for local files
+                    modalVideo.style.display = 'block';
+                    modalVideo.src = videoSrc;
+                    if (poster) {
+                        modalVideo.poster = poster;
+                    }
+
+                    // Auto-play the video
+                    modalVideo.play().catch(e => {
+                        console.log('Auto-play prevented by browser:', e);
+                    });
                 }
-    
+
                 modal.classList.remove('hidden');
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    
-                // Auto-play the video
-                modalVideo.play().catch(e => {
-                    console.log('Auto-play prevented by browser:', e);
-                });
             }
     
             function closeVideoModal() {
                 const modal = document.getElementById('video-modal');
                 const modalVideo = document.getElementById('modal-video');
-    
-                if (!modal || !modalVideo) {
+                const videoContainer = document.querySelector('#video-modal .video-container');
+
+                if (!modal || !modalVideo || !videoContainer) {
                     console.error('Modal elements not found');
                     return;
                 }
-    
+
                 modal.classList.add('hidden');
                 modal.style.display = 'none';
                 document.body.style.overflow = ''; // Restore scrolling
-    
+
                 // Stop and reset the video
                 modalVideo.pause();
                 modalVideo.currentTime = 0;
                 modalVideo.src = '';
                 modalVideo.poster = '';
+                modalVideo.style.display = 'block'; // Reset display
+
+                // Remove any iframe from Drive embeds
+                const iframe = videoContainer.querySelector('iframe');
+                if (iframe) {
+                    videoContainer.removeChild(iframe);
+                }
             }
     
             // Setup video modal event listeners

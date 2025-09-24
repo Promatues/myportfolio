@@ -456,7 +456,7 @@
         }
 
         /* ASCII Art zoom handling */
-        @media (min-resolution: 1.5dppx) {
+        @media (min-resolution: 2dppx) {
             .ascii-art {
                 font-size: max(4px, 2vw);
                 letter-spacing: -0.5px;
@@ -465,9 +465,14 @@
 
         @media (min-resolution: 2dppx) {
             .ascii-art {
-                font-size: max(3px, 1.5vw);
+                font-size: max(3px, 3.5vw);
                 letter-spacing: -1px;
             }
+        }
+
+        /* Zoom Modal Styles */
+        #zoomModal {
+            transition: opacity 0.3s ease;
         }
 
         @media (max-width: 768px) {
@@ -494,11 +499,11 @@
         <div class="container mx-auto px-4 py-3 md:py-4">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
-                <div class="flex items-center space-x-2 md:space-x-3">
-                    <div class="w-6 h-6 md:w-8 md:h-8 border-2 border-white overflow-hidden">
-                        <img src="https://i.pinimg.com/736x/fb/64/b1/fb64b103079c88e921cc774cb45d1c9c.jpg" alt="G Logo" class="w-full h-full object-cover">
+                <div class="flex items-center space-x-2 md:space-x-3 p-1">
+                    <div class="w-8 h-8 md:w-11 md:h-11 border-2 border-green-400 overflow-hidden">
+                        <img src="https://i.pinimg.com/1200x/0b/de/c5/0bdec584532e37615ae34c8abb8e595b.jpg" alt="G Logo" class="w-full h-full object-cover">
                     </div>
-                    <span class="text-green-400 font-bold text-base md:text-lg tracking-wider">GLENNIEL.EXE</span>
+                    <span class="text-green-400 font-bold text-base md:text-lg tracking-wider">GLENNIEL</span>
                 </div>
 
                 <!-- Desktop Navigation -->
@@ -524,11 +529,11 @@
 
             <!-- Mobile Navigation Menu -->
             <div id="mobile-nav" class="hidden mt-3 border-t border-green-400 pt-3 md:hidden">
-                <div class="flex flex-col space-y-2">
-                    <button class="nav-item text-left w-full" data-section="home">HOME</button>
-                    <button class="nav-item text-left w-full" data-section="projects">PROJECTS</button>
-                    <button class="nav-item text-left w-full" data-section="about">ABOUT_ME</button>
-                    <button class="nav-item text-left w-full" data-section="faq">FAQ</button>
+                <div class="flex flex-col space-y-3 pb-3">
+                    <button class="nav-item text-left w-50px text-center" data-section="home">HOME</button>
+                    <button class="nav-item text-left w-full text-center" data-section="projects">PROJECTS</button>
+                    <button class="nav-item text-left w-full text-center" data-section="about">ABOUT_ME</button>
+                    <button class="nav-item text-left w-full text-center" data-section="faq">FAQ</button>
                     <button class="nav-item text-left w-full py-2 px-3 bg-red-500 border-2 border-white text-white hover:bg-red-600 transition-colors text-center" data-section="contact">CONTACT</button>
                 </div>
             </div>
@@ -562,7 +567,7 @@
                 <div class="mb-8 md:mb-12">
                     <h2 class="text-green-400 text-lg md:text-xl lg:text-2xl font-mono tracking-wider">
                         <span id="typewriter-text"></span>
-                        <span class="typewriter">|</span>
+                        <span class="typewriter"></span>
                     </h2>
                 </div>
 
@@ -675,24 +680,10 @@
                                     <p>> Status: [ONLINE]</p>
                                     <div class="mt-3 md:mt-4 text-gray-300 leading-relaxed">
                                         <p class="mb-3 md:mb-4">
-                                            Hello, my name is Glenniel, and I'm a passionate digital media enthusiast who works as a dedicated video editor and hopes to become a web developer. 
-                                            I enjoy turning concepts into images that engage viewers and make an impression.
+                                             Hi, I'm Glenniel! I'm a video editor passionate about digital media and aspiring to be a web developer. I create engaging visuals and love experimenting with video storytelling since 2025.
                                         </p>
                                         <p class="mb-3 md:mb-4">
-                                            My creative journey started in 2025 when I discovered how powerful storytelling can be through video. 
-                                            Since then, I&#39;ve taken on a variety of personal projects, constantly experimenting and pushing myself to find new ways to express creativity.
-                                        </p>
-                                        <p class="mb-3 md:mb-4">
-                                            Beyond editing and coding, I&#39;ve also developed skills in working with AI tools like ChatGPT, Copilot, DeepSeek, Gemini, and Grok. 
-                                            I enjoy exploring how these technologies can boost efficiency and creativity, and I&#39;m always eager to learn more as the AI field evolves.
-                                        </p>
-                                        <p class="mb-3 md:mb-4">
-                                            Using engines like Godot, MonoGame, and Unity, I specialise in making pixel-style games because I'm equally passionate about game development. 
-                                            It seems like yet another fascinating way to combine interactive design and storytelling.
-                                        </p>
-                                        <p>
-                                            Outside of work, you&#39;ll often find me trying out new techniques, gaming, building websites, or diving into the latest tech trends. 
-                                            I&#39;m also a big believer in open-source communities, and I enjoy giving back by testing tools or contributing to projects—especially those related to video editing and digital creativity.
+                                            I'm into AI tools like ChatGPT and Gemini, and I make pixel-style games with Godot and Unity. When not working, I game, build websites, and contribute to open-source projects in video editing.
                                         </p>
                                     </div>
                                 </div>
@@ -709,13 +700,18 @@
                             <!-- Pixel Avatar -->
                             <div class="flex justify-center mb-6 md:mb-8">
                                 <div class="relative">
-                                    <div class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-gray-800 border-4 border-green-400 flex items-center justify-center">
+                                    <!-- Container: Same progressive sizing -->
+                                    <div class="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-gray-800 border-4 border-green-400 flex items-center justify-center cursor-pointer" onclick="openZoom()">
+                                        <!-- Image: Relative to container -->
                                         <img
-                                            src="https://i.pinimg.com/736x/fb/64/b1/fb64b103079c88e921cc774cb45d1c9c.jpg"
+                                            id="profileImg"
+                                            src="./assets/ME.png"
                                             alt="Glenn Profile"
-                                            class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover filter grayscale"
+                                            class="w-full h-full object-cover"
+                                            loading="lazy"
                                         />
                                     </div>
+                                    <!-- Indicators unchanged -->
                                     <div class="absolute -top-1 -right-1 md:-top-2 md:-right-2 w-4 h-4 md:w-6 md:h-6 bg-green-400 animate-pulse"></div>
                                     <div class="absolute -bottom-1 -left-1 md:-bottom-2 md:-left-2 w-3 h-3 md:w-4 md:h-4 bg-red-500"></div>
                                 </div>
@@ -937,6 +933,11 @@
                 <video id="modal-video" controls preload="none"></video>
             </div>
         </div>
+    </div>
+
+    <!-- Zoom Modal -->
+    <div id="zoomModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50 rounded-lg" onclick="closeZoom()">
+        <img id="zoomedImg" src="./assets/ME.png" alt="Zoomed Glenn Profile" class="max-w-full max-h-full object-contain cursor-pointer" onclick="closeZoom()" />
     </div>
 
     <script>
@@ -1621,6 +1622,24 @@
                         closeVideoModal();
                     }
                 });
+            }
+
+            // Zoom Modal Functions
+            function openZoom() {
+                const modal = document.getElementById('zoomModal');
+                const zoomedImg = document.getElementById('zoomedImg');
+                const originalImg = document.getElementById('profileImg');
+
+                // Set the zoomed image source to the original
+                zoomedImg.src = originalImg.src;
+
+                // Show the modal
+                modal.classList.remove('hidden');
+            }
+
+            function closeZoom() {
+                const modal = document.getElementById('zoomModal');
+                modal.classList.add('hidden');
             }
         </script>
 </body>
